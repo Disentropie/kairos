@@ -1,0 +1,30 @@
+.tab {
+    position: relative;
+    margin: 2rem 0px;
+    width: 90%;
+    padding-bottom: 2px;
+    border-bottom:1px solid rgb(220,220,220)
+
+}
+
+.tab_child{
+    position:relative;
+    width:fit-content;
+}
+.tab_child.active::after{
+    content:'';
+    
+    position:absolute;
+    width:100%;
+    height:2px;
+    bottom:-2px;
+    background-color: black;
+}
+
+.current_tab {
+    background-color: black/*rgb(67, 140, 217)*/;
+    position: absolute;
+    bottom: -1px;
+    height: 2px;
+    transition: left .1s ease-in-out;
+}

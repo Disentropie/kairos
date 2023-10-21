@@ -1,0 +1,8 @@
+.dragging{
+    opacity: 0.5;
+}
+
+.dragover{
+    background-color: rgb(218, 230, 237);
+    border-radius: 5px;
+}

@@ -21,7 +21,6 @@
     "vite-plugin-solid": "^2.7.1"
   },
   "dependencies": {
-    "@apollo/client": "^3.8.5",
     "@milkdown/core": "^7.3.0",
     "@milkdown/ctx": "^7.3.0",
     "@milkdown/plugin-history": "^7.3.0",
@@ -33,8 +32,8 @@
     "@milkdown/transformer": "^7.3.0",
     "@solid-primitives/i18n": "^1.4.1",
     "@solidjs/router": "^0.8.3",
-    "@suid/icons-material": "^0.6.11",
     "@suid/material": "^0.15.1",
+    "@urql/core": "^4.1.4",
     "graphql": "^16.8.1",
     "konva": "^9.2.2",
     "solid-icons": "^1.0.12",

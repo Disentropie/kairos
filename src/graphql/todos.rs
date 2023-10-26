@@ -1,7 +1,7 @@
-use users::{UserOutputDto,UserDto};
-use async_graphql::{Object, Result, SimpleObject,InputObject};
 
-use crate::graphql::users::users;
+use async_graphql::{Object, Result, SimpleObject,InputObject};
+use super::users::{UserOutputDto,UserDto};
+
 
 #[derive(Default)]
 pub struct TodoMutation;

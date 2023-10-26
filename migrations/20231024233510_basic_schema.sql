@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS todos_users
 CREATE TABLE IF NOT EXISTS todo_comments
 (
     id          uuid PRIMARY KEY,
-    description TEXT NOT NULL DEFAULT '',
+    comment TEXT NOT NULL DEFAULT '',
     creation_date TIMESTAMP NOT NULL DEFAULT NOW(),
     update_date TIMESTAMP NOT NULL DEFAULT NOW(),
     todo_id uuid NOT NULL,

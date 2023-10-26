@@ -8,7 +8,6 @@ use axum::{
 
 use std::net::SocketAddr;
 
-use crate::config::Config;
 use crate::graphql;
 
 
@@ -16,12 +15,11 @@ async fn graphiql() -> impl IntoResponse {
     response::Html(GraphiQLSource::build().endpoint("/").finish())
 }
 
-pub async fn start(config: Config) -> () {
+pub async fn start() -> () {
     let schema = graphql::generate_schema();
     let app = Router::new().route("/", get(graphiql).post_service(GraphQL::new(schema)));
 
-    // run it
-    let addr = SocketAddr::from(([127, 0, 0, 1], config.port));
+    let addr = SocketAddr::from(([127, 0, 0, 1], 9000));
     println!("Listening on {}", addr);
     axum::Server::bind(&addr)
         .serve(app.into_make_service())

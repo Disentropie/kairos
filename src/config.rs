@@ -1,27 +1,37 @@
-use std::env;
+use anyhow::Result;
+use dotenv::dotenv;
+use figment::{
+    providers::{Env, Format, Toml},
+    Figment,
+};
+use once_cell::sync::Lazy;
 
-#[derive(Debug)]
-pub struct Config {
-    /// The connection URL for the Postgres database this application should use.
-    pub database_url: String,
-    pub port: u16,
+use serde::Deserialize;
+static CONFIG: Lazy<AppConfig> = Lazy::new(|| AppConfig::new().expect("Unable to retrieve config"));
+
+#[derive(Debug, Deserialize)]
+ pub struct AppConfig {
+    pub database_uri: String,
+    pub database_user: String,
+    pub database_password: String,
+    pub server_bind_address: String,
+    pub server_tls_chain: String,
 }
 
-pub fn init() -> Config {
-    
-    dotenv::from_filename(".env").ok();
-    
-    let port: u16 = env::var("port")
-        .unwrap()
-        .trim()
-        .parse()
-        .expect("Port should be a number");
-    let db_url = env::var("DATABASE_URL").unwrap();
+impl AppConfig {
+    fn new() -> Result<AppConfig> {
+        dotenv().ok();
+         let config: AppConfig = Figment::new()
+            .merge(Toml::file("config/config.toml"))
+            .merge(Env::prefixed("KAIROS_"))
+            .extract()?;
 
-    let c=Config {
-        database_url: db_url,
-        port: port,
-    };
-    println!("Config : {:?}",c);
-    c
+
+        Ok(config)
+    }
+}
+
+
+pub fn get_config() -> &'static AppConfig{
+    &CONFIG
 }

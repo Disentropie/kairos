@@ -1,4 +1,3 @@
-import MenuIcon from "@suid/icons-material/Menu";
 import {
     AppBar,
     Box,
@@ -14,6 +13,7 @@ import { useI18n } from "@solid-primitives/i18n";
 import { createSignal } from "solid-js";
 import { SideMenu } from "./side-menu";
 import { LanguageMenu } from "./language-menu";
+import { FiMenu } from 'solid-icons/fi'
 export type IMenuNavigation = {
     path: string,
     name: string,
@@ -41,9 +41,7 @@ const NavBar = (props: NavBarProps) => {
                         sx={{ mr: 2 }}
                         onClick={() => setMenuOpen(true)}
                     >
-                        <MenuIcon
-
-                        />
+                        <FiMenu />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         {t(`routes.names.${location.pathname}`)}

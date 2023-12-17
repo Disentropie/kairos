@@ -11,6 +11,8 @@ pub struct Query(TodoQuery, UserQuery);
 #[derive(MergedObject, Default)]
 pub struct Mutation(TodoMutation, UserMutation);
 
+pub type GraphQLSchema=Schema<Query, Mutation, EmptySubscription>;
+
 pub fn generate_schema() -> Schema<Query, Mutation, EmptySubscription> {
     Schema::build(Query::default(), Mutation::default(), EmptySubscription).finish()
 }

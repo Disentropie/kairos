@@ -1,7 +1,8 @@
 database_uri = "postgresql://localhost:5432"
 database_user = "admin"
-database_password = ""
+database_password = "test123"
 
-server_bind_address = ""
+
+server_bind_address = "127.0.0.1:9000"
 server_tls_chain = "tls_chain"
 server_tls_key = ""

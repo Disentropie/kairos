@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS users
 );
 
 
-CREATE TABLE IF NOT EXISTS projects
+CREATE TABLE IF NOT EXISTS teams
 (
     id          uuid PRIMARY KEY,
     name        varchar(100) NOT NULL,
@@ -24,6 +24,35 @@ CREATE TABLE IF NOT EXISTS projects
     REFERENCES users(id)
 );
 
+CREATE INDEX IF NOT EXISTS idx_create_by ON teams 
+(
+    create_by
+);
+
+
+CREATE TABLE IF NOT EXISTS projects
+(
+    id          uuid PRIMARY KEY,
+    name        varchar(100) NOT NULL,
+    creation_date TIMESTAMP NOT NULL DEFAULT NOW(),
+    create_by uuid NOT NULL,
+    team_id uuid NOT NULL,
+    CONSTRAINT fk_create_by
+    FOREIGN KEY (create_by)
+    REFERENCES users(id),
+    CONSTRAINT fk_team_id
+    FOREIGN KEY (create_by)
+    REFERENCES teams(id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_create_by ON projects 
+(
+    create_by
+);
+CREATE INDEX IF NOT EXISTS idx_team_id ON projects 
+(
+    team_id
+);
 
 CREATE TABLE IF NOT EXISTS todos
 (

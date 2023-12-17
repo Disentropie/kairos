@@ -32,7 +32,7 @@ function KanbanView() {
         <DndZone onDrop={onDrop}>
             {(ref) => (
                 <>
-                    <KanbanActionBar />
+                    
                     <Grid ref={ref} container justifyContent="space-around">
 
                         <For each={todos_categories}>

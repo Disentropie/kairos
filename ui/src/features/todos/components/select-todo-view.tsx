@@ -1,9 +1,9 @@
 import { Button, Typography, styled } from "@suid/material"
-import { For, createEffect, createSignal } from "solid-js"
+import { For,  createSignal } from "solid-js"
 import { VsTable } from 'solid-icons/vs'
 import { Tabs } from "../../../components/Tabs/tabs"
-import { TbLayoutKanban } from 'solid-icons/tb'
-import { BsBarChartSteps } from 'solid-icons/bs'
+import { BsKanban } from 'solid-icons/bs'
+import { AiOutlineCalendar } from 'solid-icons/ai'
 import { useI18n } from "@solid-primitives/i18n"
 
 export const views = ['main_table', 'kanban', 'timeline'] as const
@@ -22,7 +22,7 @@ type SelectViewProps = {
 function SelectTodoView(props: SelectViewProps) {
     const [value, setValue] = createSignal(0);
     const [t] = useI18n()
-    const icons = [<VsTable />, <TbLayoutKanban />, <BsBarChartSteps />]
+    const icons = [<VsTable size={16} />, <BsKanban size={16} />, <AiOutlineCalendar size={16}/>]
     
 
     return (
@@ -38,7 +38,7 @@ function SelectTodoView(props: SelectViewProps) {
                     (view, idx) => (
                         <StyledButton>
                             {icons[idx()]}
-                            <Typography margin={"0px 5px"} fontSize={11}>{t(`todos.views.${view}.name`)}</Typography>
+                            <Typography margin={"0px 5px"} fontSize={12}>{t(`todos.views.${view}.name`)}</Typography>
                         </StyledButton>
                     )
                 }

@@ -6,10 +6,10 @@ use crate::config::AppConfig;
 pub async fn init(config: &AppConfig) -> Result<Pool<Postgres>> {
     let db_name = "kairos";
     let url = format!(
-        "{}?dbanme={}&user={}&password={}",
+        "{}/{}?user={}&password={}",
         config.database_uri, db_name, config.database_user, config.database_password
     );
-
+    println!("db url is : {}",&url);
     let pool = PgPoolOptions::new()
         .max_connections(5)
         .connect(&url)
